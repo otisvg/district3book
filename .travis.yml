@@ -1,10 +1,18 @@
 language: ruby
 rvm:
-  - 2.7.1
+- 2.7.1
 services:
-  - postgresql
-script:
-  - bundle install
-  - bundle exec rails db:create
-  - bundle exec rails db:migrate
-  - bundle exec rspec
+- postgresql
+cache:
+- bundler
+before_script:
+- bundle exec rails db:create
+- bundle exec rails db:migrate
+- bundle exec rspec
+deploy:
+  provider: heroku
+  api_key:
+    secure: jK6DoLYQwNYPG3Ul0WEd4OGnMIWp1xjhV5k1Cg0AXJSVfi43OpS+um8r+OMQFQDkrXPokJWV7jzl+NbNMgheuXY6uIlqrMUvNlYYf57iHPCmRqQM1H69oxtM8k3ze8qMXty1WJKik4rFheLkjQU/FUF8OkRn4ug72U5pABrA5aaPTxyKIbepM9Xta650778JpGeFc34sjDDd64ct6X6etCu31EOsnHlBmdXy2ZTzveJA1QXF1VLx8wirZzDUKdOg83flhqwiRW3clR1EN9zBUodw5kfKMxYaUekAWMl9mYt3I+YdCjYgJ0XvWCCNG9uf9jj4qULsa/rw7hND6QuWGFdorM6HAm3MWho1xA6+YJQAyrPnulw9OFl1ptXnoD7qTTnvJWNlA/KE7gvYx16GiyQsH/rgnvOIJ/251YhI8919nuJ2sdecOT+5EjTRL9wWbT+WCv80S0hNMdWT0vqQO8g+fvTLkg/bOzW/iZH0CswDev2B6T9DWyemcBjc0RHSz6B/R1/oCYzLlyOiPLEtmLa7OXlKXkEETYzuU12G25YY2yZiKnL8nf7b5FyMk1B+vXlWgtSrTdGC28MBAAPbiLnt9j3pxRcVzEHqhotf5k3RRAydshfrcQx4tjS4Banb+xnl8Yy+kiecfjrbhZKAvBgEyAjolA/7YvAID7DmnGg=
+  app: districtbook
+  on:
+    repo: beca-g/acebook-rails-template-1
