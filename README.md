@@ -58,7 +58,7 @@ I would like to be able to create posts
 <add image in here>
 
 
-# How to us
+# How to use
 
 ## Getting started:
 Clone this repository and run:
