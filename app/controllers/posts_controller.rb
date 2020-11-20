@@ -6,12 +6,8 @@ class PostsController < ApplicationController
 
   def create
     @posts = Post.create(post_params.merge(user_id: current_user.id))
-    username = User.find_by(id: "#{@posts.user_id}")
-    p "this is the username: #{username.username}"
-    # @post = Post.create(post_params.merge(user_id: current_user.id))
-    # p post_params
-    # p @post
-    # # @post = Post.create(post_params)
+    user = User.find_by(id: "#{@posts.user_id}")
+    session[:username] = user.username
     redirect_to posts_url
   end
     
