@@ -1,4 +1,3 @@
-
 def signup
   visit "/users/sign_up"
   fill_in "user_username", with: "example"
