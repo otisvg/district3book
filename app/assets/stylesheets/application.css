@@ -14,7 +14,7 @@
  *= require_self
  */
  .post-index {
-   margin: 2%
+   margin: 2%;
  }
 
  .all-posts {
@@ -35,5 +35,5 @@
   }
 
   .new-post {
-    margin: ;
+    margin: auto;
   }
