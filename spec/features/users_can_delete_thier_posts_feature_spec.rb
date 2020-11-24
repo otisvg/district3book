@@ -15,7 +15,6 @@ RSpec.feature "Timeline", type: :feature do
     signup
     make_post
     click_link "Sign Out"
-    click_link "delete"
-    expect(page).to have_content("this is a test post")
+    expect(page).not_to have_link("delete")
   end
 end
