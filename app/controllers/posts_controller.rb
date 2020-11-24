@@ -5,9 +5,9 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = Post.create(post_params)
-    # @posts = Post.create(post_params.merge(user_id: current_user.id))
-    # user = User.find_by(id: "#{@posts.user_id}")
+    # @post = Post.create(post_params)
+    @posts = Post.create(post_params.merge(user_id: current_user.id))
+    user = User.find_by(id: "#{@posts.user_id}")
     redirect_to posts_url
   end
     
@@ -15,7 +15,14 @@ class PostsController < ApplicationController
     @posts = Post.all
   end
 
-  private
+  def destroy
+    @post = User.find_by(params[:post_id])
+    Post.delete(params[:id])
+    # @post.delete
+    redirect_to posts_url
+  end
+
+  # private
 
   def post_params
     params.require(:post).permit(:message, :user_id)
