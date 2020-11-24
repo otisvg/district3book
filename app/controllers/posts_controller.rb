@@ -6,6 +6,7 @@ class PostsController < ApplicationController
 
   def create
     # @post = Post.create(post_params)
+    # @post.user_id = current_user.id
     @posts = Post.create(post_params.merge(user_id: current_user.id))
     user = User.find_by(id: "#{@posts.user_id}")
     redirect_to posts_url
@@ -16,8 +17,9 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    @post = User.find_by(params[:post_id])
-    Post.delete(params[:id])
+    @post = Post.find(params[:id])
+    @post.destroy
+    # Post.delete(params[:id])
     # @post.delete
     redirect_to posts_url
   end

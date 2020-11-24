@@ -19,7 +19,9 @@
             <p><%= user[:username]%></p>
             <p><%= post.message %></p> 
             <p class="post-time"><%= post.created_at.strftime("%d-%m-%Y at %l:%M") %></p>
-            <%= link_to('delete', {:controller => "posts", :action => 'destroy', :id => post.id }, :method => :delete) %>
+            <% if current_user && current_user.id == @post.user_id %>
+              <%= link_to('delete', {:controller => "posts", :action => 'destroy', :id => post.id }, :method => :delete) %>
+            <% end %>          
           </div>
         <% end %>
       </div>
