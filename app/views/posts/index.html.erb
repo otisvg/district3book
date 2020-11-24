@@ -16,12 +16,12 @@
           <div class="post-message">
             <!-- Add link to profiles & User picture if possible -->
             <p><% user = User.find_by(id: post.user_id) %>
-            <p><%= user[:username]%></p>
+            <p><%= user [:username] %></p>
             <p><%= post.message %></p> 
             <p class="post-time"><%= post.created_at.strftime("%d-%m-%Y at %l:%M") %></p>
-            <% if current_user && current_user.id == @post.user_id %>
+            <%# <% if current_user && current_user.id == @post.user_id %> %>
               <%= link_to('delete', {:controller => "posts", :action => 'destroy', :id => post.id }, :method => :delete) %>
-            <% end %>          
+            <%# <% end %>           %>
           </div>
         <% end %>
       </div>

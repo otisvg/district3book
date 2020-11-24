@@ -31,6 +31,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'webpacker', '~> 5.x'
 gem 'fast_jsonapi'
 gem 'devise'
+gem 'parser'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -39,11 +40,12 @@ group :development, :test do
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
   gem 'rspec-rails', '~> 3.5'
-  gem "rubocop"
+  gem "rubocop", require: false 
   gem "simplecov"
   gem "simplecov-console"
   gem 'timecop'
   gem 'travis'
+  gem 'parser'
   
 end
 
