@@ -13,3 +13,27 @@
  *= require_tree .
  *= require_self
  */
+ .post-index {
+   margin: 2%
+ }
+
+ .all-posts {
+   margin: auto;
+ }
+
+ .post-message {
+   max-width: 40%;
+   padding: 12px;
+   border: 1px solid black;
+   border-radius: 5px;
+  }
+
+  .post-time {
+    margin:  auto;
+    margin-left: 60%;
+    font-size: small;
+  }
+
+  .new-post {
+    margin: ;
+  }
