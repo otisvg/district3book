@@ -280,6 +280,7 @@ DEPENDENCIES
   fast_jsonapi
   jbuilder (~> 2.5)
   listen (>= 3.0.5, < 3.2)
+  parser
   pg
   puma (~> 3.7)
   rails
