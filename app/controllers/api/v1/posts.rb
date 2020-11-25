@@ -4,19 +4,20 @@ module API
       include API::V1::Defaults
       resource :posts do
 
-        desc "Creates a new post"
-       params do 
-        requires :message, type: String, desc: "message of the post"
-        requires :user_id, type: String, desc: "Username of current user"
-       end 
-       post "message" do
-        Post.create(message: permitted_params[:message], user_id: permitted_params[:user_id])
-       end 
+      desc "Creates a new post"
+        params do 
+          requires :message, type: String, desc: "message of the post"
+          requires :user_id, type: String, desc: "Username of current user"
+        end 
+        post "message" do
+          Post.create!({ message:permitted_params[:message], user_id: permitted_params[:user_id]})
+        end 
 
-        desc "Return all posts"
+      desc "Return all posts"
         get "" do
           Post.all
         end
+
       desc "Return a post"
         params do
           requires :id, type: String, desc: "ID of the post"
