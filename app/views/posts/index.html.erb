@@ -1,9 +1,31 @@
-<% username = current_user.present? ? current_user.username : 'Stranger' %>
-<h1>Welcome, <%= username %> </h1>
-<% @posts.each do |post| %>
-  <p><%= post.message %></p>
-<% end %>
+<div class="post-body">
+  <div class="post-index"> 
+    <% nickname = current_user.present? ? current_user.username : 'Stranger' %>
+    <h1>Welcome, <%= nickname %> </h1>
 
-<%= link_to new_post_path do %>
-  New post
-<% end %>
+      <div class="new-post">
+        <% if current_user.present? %>
+          <%= link_to new_post_path do %>
+            New post
+          <% end %>
+        <% end %>
+      </div>
+
+      <div class="all-posts">
+        <% @posts.each do |post| %>
+          <div class="post-message">
+            <!-- Add link to profiles & User picture if possible -->
+            <p><% user = User.find_by(id: post.user_id) %>
+            <p><%= user.username %></p>
+            <p><%= post.message %></p> 
+            <p class="post-time"><%= post.created_at.strftime("%d-%m-%Y at %l:%M") %></p>
+            <% if current_user.present? && current_user[:id] == post[:user_id] %>
+              <%= link_to('edit', {:controller => "posts", :action => 'edit', :id => post.id }, :get => :edit ) %>
+              <%= link_to('delete', {:controller => "posts", :action => 'destroy', :id => post.id }, :method => :delete, data: { confirm: "Are you sure?" }) %>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+  </div>
+</div>
+
