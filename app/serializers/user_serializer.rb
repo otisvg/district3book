@@ -1,6 +1,3 @@
-class UserSerializer
-  include FastJsonapi::ObjectSerializer
-  attributes :email, :username
-
-  has_many :posts
+class UserSerializer < ActiveModel::Serializer
+  attributes :id, :email, :username
 end
