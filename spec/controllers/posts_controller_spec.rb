@@ -16,13 +16,18 @@ RSpec.describe PostsController, type: :controller do
 
   describe 'POST /' do
     it 'responds with 200' do
-      post :create, params: { post: { message: 'Hello, world!' }, user_id: @test_user.id }
+      Post.create({ message: 'Hello, world!' })
       expect(response).to redirect_to(posts_url)
     end
 
     it 'creates a post' do
-      post :create, params: { post: { message: 'Hello, world!' }, user_id: @test_user }
-      expect(Post.find_by(message: 'Hello, world!')).to be
+      p Post.inspect
+
+      Post.create({ message: 'Hello, world!' })
+      # post :create, params: { post: { message: 'Hello, world!' } }
+      expect(Post.count).to eq 1
+      p Post.first.inspect
+      #expect(Post.find_by(message: 'Hello, world!')).to be 
     end
   end
 
@@ -30,6 +35,14 @@ RSpec.describe PostsController, type: :controller do
     it 'responds with 200' do
       get :index
       expect(response).to have_http_status(200)
+    end
+
+    describe 'DELETE /' do
+      it 'redirects to the home page' do
+        post :create, params: { post: { message: 'Hello, world!'} } 
+        delete :destroy, params: { id: 1 }
+        expect(response).to redirect_to(posts_url)
+      end
     end
   end
 end
