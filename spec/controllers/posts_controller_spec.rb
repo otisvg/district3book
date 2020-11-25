@@ -17,17 +17,20 @@ RSpec.describe PostsController, type: :controller do
   describe 'POST /' do
     it 'responds with 200' do
       Post.create({ message: 'Hello, world!' })
-      expect(response).to redirect_to(posts_url)
+      expect(response).to have_http_status(200)
     end
+    
+    # it 'redirects to home page after post is created' do
+    #   User.create(id: 1, username: 'meryl', password: 'password', email: 'example@example.com' )
+    #   post :create, params: { post: { message: "Hello, world!", user_id:1} }
+    #   expect(response).to redirect_to(posts_url)
+    # end
+
 
     it 'creates a post' do
-      p Post.inspect
-
-      Post.create({ message: 'Hello, world!' })
-      # post :create, params: { post: { message: 'Hello, world!' } }
-      expect(Post.count).to eq 1
-      p Post.first.inspect
-      #expect(Post.find_by(message: 'Hello, world!')).to be 
+      User.create(id: 1, username: 'meryl', password: 'password', email: 'example@example.com' )
+      Post.create(id: 1, message: "hello!", user_id: 1)
+      expect(Post.find(1).message).to eq 'hello!'
     end
   end
 
@@ -39,7 +42,8 @@ RSpec.describe PostsController, type: :controller do
 
     describe 'DELETE /' do
       it 'redirects to the home page' do
-        post :create, params: { post: { message: 'Hello, world!'} } 
+        User.create(id: 1, username: 'meryl', password: 'password', email: 'example@example.com' )
+        Post.create(id: 1, message: "hello!", user_id: 1)
         delete :destroy, params: { id: 1 }
         expect(response).to redirect_to(posts_url)
       end

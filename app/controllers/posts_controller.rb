@@ -5,7 +5,7 @@ class PostsController < ApplicationController
   end
 
   def create
-    @posts = Post.create(message: post_params['message'], user_id: current_user.id)
+    @post = Post.create(message: post_params['message'], user_id: current_user.id)
     # @post = Post.create(params[:post].permit(:message, :user_id))
     # @post = Post.create(post_params)
     # @post.user_id = current_user.id
